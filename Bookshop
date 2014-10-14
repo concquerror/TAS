@@ -1,0 +1,65 @@
+-- Tak na początek :)
+
+Create Database Bookshop
+
+-- 1. Tworzenie table
+
+Create Table Books(
+	Id Int Not Null primary key,
+	Name Varchar(50) check(Name like '%') Not Null,
+	Authors Varchar(30) Not Null,
+	Publisher Varchar(15) Not Null,
+	Year Int Not Null,
+	State Varchar(15) check(Name like ‘Dostępna’ or ‘Nie dostępna’)
+);
+Create Table Archive(
+	Id Int Not Null primary key,
+	Name Varchar(50) check(Name like '%') Not Null,
+	Authors Varchar(30) Not Null,
+	Publisher Varchar(15) Not Null,
+	Year Int Not Null,
+);
+Create Table eBooks(
+	Id Int Not Null primary key,
+	Name Varchar(50) check(Name like '%') Not Null,
+	Authors Varchar(30) Not Null,
+	Publisher Varchar(15) Not Null,
+	Year Int Not Null,
+	State Varchar(15) check(Name like ‘Dostępna’ or ‘Niedostępna’)
+);
+Create Table Users(
+	Id Int Not Null primary key,
+	Name Varchar(50) check(Name like '%') Not Null,
+	Sname Varchar(50) check(Sname like '%') Not Null,
+	Birth Date Not Null,
+	BooksBorrowed Int Default ‘0’,
+	EBooksBorrowed Int Default ‘0’, 
+);
+Create Table BorrowedBooks(
+	Id Int Not Null primary key,
+	Name Varchar(50) check(Name like '%') Not Null,
+	Authors Varchar(30) Not Null,
+	Publisher Varchar(15) Not Null,
+	Year Int Not Null,
+	User Int Not Null,
+);
+
+
+
+ 
+Create Procedure Borrowed
+(
+	@userid Int
+)
+as
+	select *
+	from BorrowedBooks
+	where User = @userid
+go
+
+
+
+Create view Available as
+Select *
+from Books, eBooks
+where State=’Dostępna’
