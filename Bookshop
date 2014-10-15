@@ -45,8 +45,31 @@ Create Table BorrowedBooks(
 );
 
 
+ALTER TABLE Books
+ADD CONSTRAINT FK_Books
+FOREIGN KEY (Id)
+REFERENCES BorrowedBooks(Id);
 
- 
+Create Trigger All1
+ON Books 
+AFTER INSERT
+AS
+	insert into Archive
+	SELECT Id, Name, Authors, Publisher Year
+	FROM inserted;
+GO
+
+Create Trigger All2
+ON EBooks 
+AFTER INSERT
+AS
+	insert into Archive
+	SELECT Id, Name, Authors, Publisher Year
+	FROM inserted;
+GO
+
+
+
 Create Procedure Borrowed
 (
 	@userid Int
