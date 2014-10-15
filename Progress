@@ -1,0 +1,20 @@
+Postępy w pracy:
+
+1 tydzień
+
+Warstwa WEBowa:
+- cos tam w htmlu (dupy nie urywa)
+
+
+
+Warstwa Biznesowa:
+
+
+
+
+Warstwa Bazy Danych:
+- utworzenie tabel (Books, EBooks, Archive, Users, BorrowedBooks)
+- utworzenie klucza (Books)
+- utworzenie Triggerów (All1, All2)
+- utworzenie procedury (Borrowed)
+- utworzenie widoku (Available)

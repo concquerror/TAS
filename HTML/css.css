@@ -1,0 +1,76 @@
+.nawigatory{
+background-color: #ccffcc;
+}
+
+.nawigatory a {
+  color: #5a5a5a;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 14px 10px;
+  text-transform: uppercase;
+}
+
+.nawigatory li {
+  display: inline;
+}
+
+.nagłówek {
+  background-image:url('ksiegarnia.jpg');
+  height: 500px;
+}
+
+.nagłówek .container {
+  position: relative;
+  top:100px;
+  left:15px;
+}
+
+.nagłówek h1 {
+  color: #ff3366;
+  font-size: 100px;  
+  font-family: 'Bookman Old Style', sans-serif;
+  font-weight: bold;
+}
+
+.nagłówek p {
+  font-size: 45px;
+  font-family: 'Monotype Corsiva', sans-serif;
+  color: #fff;
+  position: relative;
+  left:100px;
+}
+
+.nagłówek a {
+  font-size: 10px;
+  color: #fff;
+  position: relative;
+  top:150px;
+  
+}
+
+
+.reszta h3 {
+  font-family: 'Shift', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.reszta h2 {
+  font-family: 'Shift', sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.reszta a {
+  color: #663399;
+}
+
+.reszta {
+  background-color: #ffff99;
+}
+
+.reszta .container{
+  background-color: #fff;
+}
+
+
