@@ -13,7 +13,6 @@ Create Table Books(
 	State Varchar(15) check(Name like ‘Dostępna’ or ‘Nie dostępna’)
 );
 Create Table Archive(
-	Id Int Not Null primary key,
 	Name Varchar(50) check(Name like '%') Not Null,
 	Authors Varchar(30) Not Null,
 	Publisher Varchar(15) Not Null,
@@ -55,7 +54,7 @@ ON Books
 AFTER INSERT
 AS
 	insert into Archive
-	SELECT Id, Name, Authors, Publisher Year
+	SELECT Name, Authors, Publisher, PYear
 	FROM inserted;
 GO
 
@@ -64,7 +63,7 @@ ON EBooks
 AFTER INSERT
 AS
 	insert into Archive
-	SELECT Id, Name, Authors, Publisher Year
+	SELECT Name, Authors, Publisher, PYear
 	FROM inserted;
 GO
 
@@ -82,7 +81,34 @@ go
 
 
 
-Create view Available as
-Select *
-from Books, eBooks
-where State=’Dostępna’
+Create view AvailableB as
+Select B.Id, B.Name, B.Authors, B.Publisher, B.PYear
+from Books B
+where B.BState='Dostępna'
+
+Create view AvailableE as
+Select B.Id, B.Name, B.Authors, B.Publisher, B.PYear
+from eBooks B
+where B.BState='Dostępna'
+
+ALTER TABLE Books 
+NOCHECK CONSTRAINT FK_Books;
+update Books
+set BState='Nie dostępna'
+where Id=1
+ALTER TABLE Books 
+CHECK CONSTRAINT FK_Books;
+
+ALTER TABLE Books 
+NOCHECK CONSTRAINT FK_Books;
+Delete 
+FROM Books
+WHERE Id=1
+ALTER TABLE Books 
+CHECK CONSTRAINT FK_Books;
+
+ALTER TABLE Books 
+NOCHECK CONSTRAINT FK_Books;
+Insert into Books Values (1, 'Wiedźmin 1','Andrzej Sapkowski','Nowa Era',1999,'Dostępna')
+ALTER TABLE Books 
+CHECK CONSTRAINT FK_Books;
