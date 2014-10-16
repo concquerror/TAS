@@ -11,7 +11,7 @@ Warstwa Biznesowa:
 
 Postawiony serwer (u Adama - Wamp, u Marcina - nie wiem)
 Poprawnie skonfigurowany Laravel (framework)
-Obecnie buszuję w dokumentacji, bo cokolwiek nabrało sensu (Adam)
+Obecnie buszuję w dokumentacji, by cokolwiek nabrało sensu (Adam)
 
 Warstwa Bazy Danych:
 - utworzenie tabel (Books, EBooks, Archive, Users, BorrowedBooks)
