@@ -67,6 +67,35 @@ AS
 	FROM inserted;
 GO
 
+Create Procedure Add_Book
+(
+	@Name Varchar(50) = '%',
+	@Authors Varchar(30) = '%',
+	@Publisher Varchar(15) = '%',
+	@Year Int,
+
+)
+as
+	declare @id int;
+	set @id = ((select max(Id)
+				from Books)+1);
+	insert into Books(Id, Name, Authors, Publisher, Year, State) values (isnull(@id,1),@Name, @Authors, @Publisher, @Year, “Dostępna”);
+go
+
+Create Procedure Add_eBook
+(
+	@Name Varchar(50) = '%',
+	@Authors Varchar(30) = '%',
+	@Publisher Varchar(15) = '%',
+	@Year Int,
+
+)
+as
+	declare @id int;
+	set @id = ((select max(Id)
+				from eBooks)+1);
+	insert into eBooks(Id, Name, Authors, Publisher, Year, State) values (isnull(@id,1),@Name, @Authors, @Publisher, @Year, “Dostępna”);
+go
 
 
 Create Procedure Borrowed
