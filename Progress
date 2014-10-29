@@ -26,6 +26,8 @@ Warstwa Bazy Danych:
 Warstwa WEBowa:
 
 Warstwa Biznesowa:
-
+- połączenie z bazą danych
+- podstawowe działania na bazie (poprzez laravela)
+- wygenerowany szkielet do html
 Warstwa Bazy Danych:
 - utworzenie procedur (Add_Book, Add_eBook)
