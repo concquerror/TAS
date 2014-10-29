@@ -19,3 +19,13 @@ Warstwa Bazy Danych:
 - utworzenie Triggerów (All1, All2)
 - utworzenie procedury (Borrowed)
 - utworzenie widoku (Available)
+
+
+2 tydzień
+
+Warstwa WEBowa:
+
+Warstwa Biznesowa:
+
+Warstwa Bazy Danych:
+- utworzenie procedur (Add_Book, Add_eBook)
