@@ -31,3 +31,4 @@ Warstwa Biznesowa:
 - wygenerowany szkielet do html
 Warstwa Bazy Danych:
 - utworzenie procedur (Add_Book, Add_eBook)
+- wstępny szablon programu do obsługi bazy danych
