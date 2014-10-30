@@ -9,22 +9,22 @@ Create Table Books(
 	Name Varchar(50) check(Name like '%') Not Null,
 	Authors Varchar(30) Not Null,
 	Publisher Varchar(15) Not Null,
-	Year Int Not Null,
-	State Varchar(15) check(Name like ‘Dostępna’ or ‘Nie dostępna’)
+	PYear Int Not Null,
+	BState Varchar(15) check(State like ‘Dostępna’ or State like ‘Nie dostępna’)
 );
 Create Table Archive(
 	Name Varchar(50) check(Name like '%') Not Null,
 	Authors Varchar(30) Not Null,
 	Publisher Varchar(15) Not Null,
-	Year Int Not Null,
+	PYear Int Not Null,
 );
 Create Table eBooks(
 	Id Int Not Null primary key,
 	Name Varchar(50) check(Name like '%') Not Null,
 	Authors Varchar(30) Not Null,
 	Publisher Varchar(15) Not Null,
-	Year Int Not Null,
-	State Varchar(15) check(Name like ‘Dostępna’ or ‘Niedostępna’)
+	PYear Int Not Null,
+	BState Varchar(15) check(State like ‘Dostępna’ or State like ‘Niedostępna’)
 );
 Create Table Users(
 	Id Int Not Null primary key,
@@ -39,8 +39,8 @@ Create Table BorrowedBooks(
 	Name Varchar(50) check(Name like '%') Not Null,
 	Authors Varchar(30) Not Null,
 	Publisher Varchar(15) Not Null,
-	Year Int Not Null,
-	User Int Not Null,
+	PYear Int Not Null,
+	BUser Int Not Null,
 );
 
 
@@ -72,14 +72,14 @@ Create Procedure Add_Book
 	@Name Varchar(50) = '%',
 	@Authors Varchar(30) = '%',
 	@Publisher Varchar(15) = '%',
-	@Year Int,
+	@Year Int
 
 )
 as
 	declare @id int;
 	set @id = ((select max(Id)
 				from Books)+1);
-	insert into Books(Id, Name, Authors, Publisher, Year, State) values (isnull(@id,1),@Name, @Authors, @Publisher, @Year, “Dostępna”);
+	insert into Books(Id, Name, Authors, Publisher, Year, BState) values (isnull(@id,1),@Name, @Authors, @Publisher, @Year, 'Dostępna');
 go
 
 Create Procedure Add_eBook
@@ -94,7 +94,7 @@ as
 	declare @id int;
 	set @id = ((select max(Id)
 				from eBooks)+1);
-	insert into eBooks(Id, Name, Authors, Publisher, Year, State) values (isnull(@id,1),@Name, @Authors, @Publisher, @Year, “Dostępna”);
+	insert into eBooks(Id, Name, Authors, Publisher, PYear, BState) values (isnull(@id,1),@Name, @Authors, @Publisher, @Year, “Dostępna”);
 go
 
 
