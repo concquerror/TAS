@@ -9,6 +9,7 @@ Create Table Books(
 	Publisher Varchar(15) Not Null,
 	PYear Int Not Null,
 	BState Varchar(15) check(BState like 'Dostępna' or BState like 'Nie dostępna')
+	Price Float Not Null,
 );
 Create Table Archive(
 	Name Varchar(50) check(Name like '%') Not Null,
@@ -22,7 +23,8 @@ Create Table eBooks(
 	Authors Varchar(30) Not Null,
 	Publisher Varchar(15) Not Null,
 	PYear Int Not Null,
-	BState Varchar(15) check(BState like 'Dostępna' or BState like 'Niedostępna')
+	BState Varchar(15) check(BState like 'Dostępna' or BState like 'Niedostępna'),
+	Price Float Not Null,
 );
 Create Table Users(
 	Id Int Not Null primary key,
@@ -73,13 +75,14 @@ Create Procedure Add_Book
 	@Authors Varchar(30) = '%',
 	@Publisher Varchar(15) = '%',
 	@Year Int
+	@Price Float
 
 )
 as
 	declare @id int;
 	set @id = ((select max(Id)
 				from Books)+1);
-	insert into Books(Id, Name, Authors, Publisher, PYear, BState) values (isnull(@id,1),@Name, @Authors, @Publisher, @Year, 'Dostępna');
+	insert into Books(Id, Name, Authors, Publisher, PYear, BState, Price) values (isnull(@id,1),@Name, @Authors, @Publisher, @Year, 'Dostępna', @Price);
 go
 
 Create Procedure Add_eBook
@@ -94,7 +97,7 @@ as
 	declare @id int;
 	set @id = ((select max(Id)
 				from eBooks)+1);
-	insert into eBooks(Id, Name, Authors, Publisher, PYear, BState) values (isnull(@id,1),@Name, @Authors, @Publisher, @Year, 'Dostępna');
+	insert into eBooks(Id, Name, Authors, Publisher, PYear, BState, Price) values (isnull(@id,1),@Name, @Authors, @Publisher, @Year, 'Dostępna', @Price);
 go
 
 
