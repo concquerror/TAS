@@ -29,10 +29,10 @@ Create Table Users(
 	Name Varchar(50) check(Name like '%') Not Null,
 	Sname Varchar(50) check(Sname like '%') Not Null,
 	Birth Date Not Null,
-	BooksBorrowed Int Default '0',
-	EBooksBorrowed Int Default '0', 
+	BooksBought Int Default '0',
+	EBooksBought Int Default '0', 
 );
-Create Table BorrowedBooks(
+Create Table BoughtBooks(
 	Id Int Not Null primary key,
 	Name Varchar(50) check(Name like '%') Not Null,
 	Authors Varchar(30) Not Null,
@@ -45,7 +45,7 @@ Create Table BorrowedBooks(
 ALTER TABLE Books
 ADD CONSTRAINT FK_Books
 FOREIGN KEY (Id)
-REFERENCES BorrowedBooks(Id);
+REFERENCES BoughtBooks(Id);
 
 Create Trigger All1
 ON Books 
@@ -96,17 +96,17 @@ as
 go
 
 
-Create Procedure Borrowed
+Create Procedure Bought
 (
 	@userid Int
 )
 as
 	select *
-	from BorrowedBooks
+	from BoughtBooks
 	where User = @userid
 go
 
-Create Procedure Borrow_Book
+Create Procedure Buy_Book
 (
 	@id Int,
 	@Userid Int
@@ -117,7 +117,7 @@ as
 	update Books
 	set BState='Nie dostępna'
 	where Id=@id;
-	insert into BorrowedBooks
+	insert into BoughtBooks
 	SELECT B.Id, B.Name, B.Authors, B.Publisher, B.PYear,U.Id
 	FROM Books B, Users U
 	where B.Id=@id and U.Id=@Userid
@@ -162,5 +162,5 @@ Select * from Books
 Select * from eBooks
 Select * from AvailableB
 Select * from AvailableE
-Select * from BorrowedBooks
+Select * from BoughtBooks
 Select * from Archive
