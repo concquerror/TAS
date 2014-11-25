@@ -169,3 +169,17 @@ Select * from AvailableB
 Select * from AvailableE
 Select * from BoughtBooks
 Select * from Archive
+
+Create Procedure Search
+(
+	@name Varchar(30) = '%',
+	@author Varchar(30) = '%',
+	@yearb Varchar(30) = '%',
+	@description Varchar(30) = '%'
+)
+as
+Create view Search as
+Select Id, Name, Authors, Publisher, Year, State
+From Books
+	Where (Name is like ‘%’@name’%’) and (Authors is like ‘%’@author’%’) and (Year is like ‘%’@Year’%’) and (Description is like ‘%’@description’%’)
+go
