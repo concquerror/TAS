@@ -184,7 +184,7 @@ Create Procedure Search
 as
 	Select Id, Name, Authors, Publisher, PYear, BState
 	From Books
-	Where (Name LIKE '%'+@name+'%') and (Authors LIKE '%'+@author+'%') and (BDescription LIKE '%'+@description+'%') or (PYear LIKE @yearb)
+	Where (Name LIKE '%'+ISNULL(@name,'')+'%') and (Authors LIKE '%'+ISNULL(@author,'')+'%') and (BDescription LIKE '%'+ISNULL(@description,'')+'%') or (PYear LIKE ISNULL(@yearb,''))
 go
 drop procedure Search
 EXEC Search 'i','a','',1999
