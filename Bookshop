@@ -178,13 +178,12 @@ Create Procedure Search
 (
 	@name Varchar(30) = '%',
 	@author Varchar(30) = '%',
-	@yearb int,
 	@description Varchar(1000) = '%'
 )
 as
 	Select Id, Name, Authors, Publisher, PYear, BState
 	From Books
-	Where (Name LIKE '%'+ISNULL(@name,'')+'%') and (Authors LIKE '%'+ISNULL(@author,'')+'%') and (BDescription LIKE '%'+ISNULL(@description,'')+'%') or (PYear LIKE ISNULL(@yearb,''))
+	Where (Name LIKE '%'+@name+'%') or (Authors LIKE '%'+@author+'%') or (BDescription LIKE '%'+@description+'%')
 go
-drop procedure Search
-EXEC Search 'i','a','',1999
+--drop procedure Search
+EXEC Search @name='e', @author=NULL, @description=NULL
